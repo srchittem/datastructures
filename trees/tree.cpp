@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stdio.h>
 using namespace std;
 
 class node
@@ -37,6 +38,7 @@ class tree
 	void levelOrderTraverseUtil(node *root, int level);
 	void levelOrderTraverseUtil(node *root, queue<node *> q);
 	void diameterUtil(node *root, int& d);
+	void LCAUtil(node *root, int f, int s, queue<int>& q1, queue<int>& q2);
 public:
 	tree();
 	~tree();
@@ -46,6 +48,7 @@ public:
 	void levelOrderTraverse();
 	void levelOrderTraversewithQ();
 	int diameter();
+	int LCAWithQ(int a, int b);
 };
 
 tree::tree()
@@ -113,10 +116,12 @@ void tree::buildTree()
 	addRightNode(Root->left,new node(5));	
 	addLeftNode(Root->right,new node(6));	
 	addRightNode(Root->right,new node(7));	
+#if 0
 	addLeftNode(Root->right->right,new node(8));	
 	addLeftNode(Root->right->right->left,new node(9));	
 	addLeftNode(Root->left->left,new node(4));	
 	addLeftNode(Root->left->left->left,new node(4));	
+#endif
 }
 
 
@@ -211,10 +216,59 @@ void tree::inOrder()
 {
 	inOrderTraverse(Root);	
 }
+
+void tree::LCAUtil(node *root, int f, int s, queue<int>& q1, queue<int>& q2)
+{
+	static int f_f,s_f;
+
+	if(!root)
+		return;
+
+	if(f_f && s_f)
+		return;
+
+	if(root->data != f && root->data != s)
+	{
+
+		if(!f_f)
+			q1.push(root->data);
+		if(!s_f)
+			q2.push(root->data);
+	}	
+	else if(root->data == f)
+	{
+		f_f = 1;
+	}
+	else
+		s_f = 1;
+	
+	LCAUtil(root->left,f,s,q1,q2);
+	LCAUtil(root->right,f,s,q1,q2);
+	
+
+}
+
+int tree::LCAWithQ(int a, int b)
+{
+	queue<int> q1,q2;
+	LCAUtil(Root,a,b,q1,q2);
+	//cout <<"q1 size"<<q1.size()<<"q2 size"<<q2.size();
+	while(!q1.empty() && !q2.empty())
+	{
+		if(q1.front() == q2.front())
+		{
+
+			return q1.front();
+		}
+		q1.pop();
+		q2.pop();
+	}		
+}
+
 int main()
 {
 	tree r;
 	r.buildTree();
 //	r.inOrder();
-	printf("diameter: %d",r.diameter());
+	printf("diameter: %d",r.LCAWithQ(4,5));
 }
