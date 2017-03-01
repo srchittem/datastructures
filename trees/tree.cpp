@@ -1,3 +1,5 @@
+//#include "stdafx.h"
+
 #include <iostream>
 #include <queue>
 #include <stdio.h>
@@ -39,7 +41,8 @@ class tree
 	void levelOrderTraverseUtil(node *root, queue<node *> q);
 	void diameterUtil(node *root, int& d);
 	void LCAUtil(node *root, int f, int s, queue<int>& q1, queue<int>& q2);
-	int leftMostNodeUtil(node *root, int &ll, int &rl, int &ml, int &lvalue);
+	int leftMostNodeUtil(node *root, int &ml, int &lvalue);
+	void greatestNodeatEachLevelUtil(node *root, queue<node *> q);
 public:
 	tree();
 	~tree();
@@ -51,6 +54,7 @@ public:
 	int diameter();
 	int LCAWithQ(int a, int b);
 	int leftMostNode();
+	void greatestNodeatEachLevel();
 };
 
 tree::tree()
@@ -118,11 +122,12 @@ void tree::buildTree()
 	addRightNode(Root->left,new node(5));	
 	addLeftNode(Root->right,new node(6));	
 	addRightNode(Root->right,new node(7));	
-	addLeftNode(Root->left->left,new node(8));	
+	//addRightNode(Root->right->right,new node(8));
+	//addRightNode(Root->right->right->right,new node(9));
+#if 1
+	addLeftNode(Root->left->left,new node(8));
+	addRightNode(Root->left->left, new node(10));
 	addLeftNode(Root->left->left->left,new node(9));	
-#if 0
-	addLeftNode(Root->left->left,new node(4));	
-	addLeftNode(Root->left->left->left,new node(4));	
 #endif
 }
 
@@ -160,43 +165,29 @@ void tree::levelOrderTraverseUtil(node *root, int level)
 	levelOrderTraverseUtil(root->right,level-1);
 }
 
-int tree::leftMostNodeUtil(node *root, int &ll, int &rl, int &ml, int &lvalue)
+int tree::leftMostNodeUtil(node *root, int &ml, int &lvalue)
 {
-
-	int lv,rv;
-	if(!root)
+	if (!root)
 		return 0;
-	if(root->left && (root->left->left == NULL && root->left->right == NULL))
-	{
-		return root->left->data;
-	}
-	else
-	{
-		ll+=1;
-		lv = leftMostNodeUtil(root->left,ll,rl,ml,lvalue);
-		rl+=1;
-		rv = leftMostNodeUtil(root->right,ll,rl,ml,lvalue);
-	}
-	if(ll >= rl && ml < ll)
+	int ll =1+ leftMostNodeUtil(root->left,ml,lvalue);
+	int rl = 1+ leftMostNodeUtil(root->right,ml,lvalue);
+
+	if (ml < ll)
 	{
 		ml = ll;
-	 	lvalue = lv;	
-		
-	}
-	else if(rl > ll && ml < rl)
-	{
-		ml = rl;
-		lvalue = rv;
+		lvalue = root->data;
 	}
 		
-
+	return  (ll < rl ? ll : ll);
+	//return ml;
 }
 
 int tree::leftMostNode()
 {
 	int ll = 1,rl=1,ml=0, value = 0;
-	leftMostNodeUtil(Root,ll,rl,ml,value);
-	return value;
+	 leftMostNodeUtil(Root,ml,value);
+	cout << value << endl;
+	return ml;
 
 }
 void tree::levelOrderTraverseUtil(node *root, queue<node *> q)
@@ -216,6 +207,43 @@ void tree::levelOrderTraverseUtil(node *root, queue<node *> q)
 			q.push(n->right); 
 	}
 	
+}
+
+void tree::greatestNodeatEachLevelUtil(node *root, queue<node *> q)
+{
+	if (q.empty() && root)
+	{
+		q.push(root);
+	}
+	while (!q.empty())
+	{
+		int size = q.size();
+		int max = 0;
+		for (int i = 0; i < size; i++)
+		{
+			node * n = q.front();
+			if (n->data > max)
+			{
+				max = n->data;
+			}
+			q.pop();
+			if (n->left)
+				q.push(n->left);
+			if (n->right)
+				q.push(n->right);
+
+		}
+		cout << "maximum at this level:" << max <<endl;
+		
+	}
+
+}
+
+void tree::greatestNodeatEachLevel()
+{
+	queue<node *> q;
+
+	greatestNodeatEachLevelUtil(Root, q);
 }
 void tree::levelOrderTraversewithQ()
 {
@@ -303,13 +331,14 @@ int tree::LCAWithQ(int a, int b)
 		}
 		q1.pop();
 		q2.pop();
-	}		
+	}	
+	return 0;
 }
 
-int main()
+void main()
 {
 	tree r;
 	r.buildTree();
 //	r.inOrder();
-	printf("diameter: %d",r.leftMostNode());
+	r.greatestNodeatEachLevel();
 }
