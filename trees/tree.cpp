@@ -43,6 +43,7 @@ class tree
 	void LCAUtil(node *root, int f, int s, queue<int>& q1, queue<int>& q2);
 	int leftMostNodeUtil(node *root, int &ml, int &lvalue);
 	void greatestNodeatEachLevelUtil(node *root, queue<node *> q);
+	void maxSeqLengthUtil(node *root,int seq, int &cur, int&max);
 public:
 	tree();
 	~tree();
@@ -55,6 +56,7 @@ public:
 	int LCAWithQ(int a, int b);
 	int leftMostNode();
 	void greatestNodeatEachLevel();
+	int maxSeqLength();
 };
 
 tree::tree()
@@ -122,12 +124,14 @@ void tree::buildTree()
 	addRightNode(Root->left,new node(5));	
 	addLeftNode(Root->right,new node(6));	
 	addRightNode(Root->right,new node(7));	
-	//addRightNode(Root->right->right,new node(8));
-	//addRightNode(Root->right->right->right,new node(9));
-#if 1
+	addRightNode(Root->right->right,new node(8));
+	addRightNode(Root->right->right->right,new node(9));
+	addRightNode(Root->right->right->right->right,new node(10));
+	addRightNode(Root->right->right->right->right->right,new node(11));
+#if 0
 	addLeftNode(Root->left->left,new node(8));
 	addRightNode(Root->left->left, new node(10));
-	addLeftNode(Root->left->left->left,new node(9));	
+//	addLeftNode(Root->left->left->left,new node(11));	
 #endif
 }
 
@@ -317,6 +321,31 @@ void tree::LCAUtil(node *root, int f, int s, queue<int>& q1, queue<int>& q2)
 
 }
 
+void tree::maxSeqLengthUtil(node *root,int seq, int &cur, int&max)
+{
+    if(!root)
+           return;
+    if(root->data == seq)
+    {
+        cur =cur+1;
+        if(cur >max)
+               max = cur;
+	cout<<"max:"<<max<<"cur:"<<cur <<endl;
+    }
+    else
+        cur = 1;
+    maxSeqLengthUtil(root->left,root->data+1,cur,max);
+    maxSeqLengthUtil(root->right,root->data+1,cur,max);
+    
+    
+}
+int tree::maxSeqLength()
+{
+	int lc = 0,rc =0, max =0;
+	maxSeqLengthUtil(Root,Root->data,lc,max);
+	return max;
+}
+
 int tree::LCAWithQ(int a, int b)
 {
 	queue<int> q1,q2;
@@ -335,10 +364,11 @@ int tree::LCAWithQ(int a, int b)
 	return 0;
 }
 
-void main()
+int main()
 {
 	tree r;
 	r.buildTree();
 //	r.inOrder();
-	r.greatestNodeatEachLevel();
+//	r.greatestNodeatEachLevel();
+	cout <<"max seq length:"<<r.maxSeqLength(); 
 }
