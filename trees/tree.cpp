@@ -44,6 +44,8 @@ class tree
 	int leftMostNodeUtil(node *root, int &ml, int &lvalue);
 	void greatestNodeatEachLevelUtil(node *root, queue<node *> q);
 	void maxSeqLengthUtil(node *root,int seq, int &cur, int&max);
+	void modifyUtil(node *root, int &val);
+	int LcaInBstUtil(node *root, int a, int b);
 public:
 	tree();
 	~tree();
@@ -57,6 +59,8 @@ public:
 	int leftMostNode();
 	void greatestNodeatEachLevel();
 	int maxSeqLength();
+	void modifyTree();
+	int LcaInBst(int a, int b);
 };
 
 tree::tree()
@@ -115,20 +119,40 @@ int tree::height()
 	return heightUtil(Root);	
 }
 
+void tree::modifyUtil(node *root, int &val)
+{
+	int temp;
+	if(!root)
+		return;
+	modifyUtil(root->right,val);
+	temp = root->data;
+	root->data = val;
+	val += temp;
+	modifyUtil(root->left,val);
+	
+	
+
+}
+
+void tree::modifyTree()
+{
+	int val = 0;
+	modifyUtil(Root,val);
+}
 void tree::buildTree()
 {
-	addNode(new node(1));	
-	addLeftNode(Root,new node(2));	
-	addRightNode(Root,new node(3));	
-	addLeftNode(Root->left,new node(4));	
-	addRightNode(Root->left,new node(5));	
-	addLeftNode(Root->right,new node(6));	
-	addRightNode(Root->right,new node(7));	
+	addNode(new node(10));	
+	addLeftNode(Root,new node(6));	
+	addRightNode(Root,new node(15));	
+	addLeftNode(Root->left,new node(2));	
+	addRightNode(Root->left,new node(8));	
+	addLeftNode(Root->right,new node(14));	
+	addRightNode(Root->right,new node(20));	
+#if 0
 	addRightNode(Root->right->right,new node(8));
 	addRightNode(Root->right->right->right,new node(9));
 	addRightNode(Root->right->right->right->right,new node(10));
 	addRightNode(Root->right->right->right->right->right,new node(11));
-#if 0
 	addLeftNode(Root->left->left,new node(8));
 	addRightNode(Root->left->left, new node(10));
 //	addLeftNode(Root->left->left->left,new node(11));	
@@ -290,6 +314,36 @@ void tree::inOrder()
 	inOrderTraverse(Root);	
 }
 
+int tree::LcaInBstUtil(node *root, int a, int b)
+{
+	if(!root)
+		return -1;
+	if(root->data == a || root->data == b)
+	{	
+			cout << "returning from here"<<endl;
+			return root->data;
+	}
+	if((root->data >a && root->data <b) || (root->data < a && root->data > b) )
+		return root->data;
+	else if(root->data > a && root->data > b)
+	{
+		LcaInBstUtil(root->left,a,b);
+	}
+	else if(root->data < a && root->data < b)
+	{
+		LcaInBstUtil(root->right,a,b);
+	}
+	
+
+
+}
+
+
+int  tree::LcaInBst(int a, int b)
+{
+	return LcaInBstUtil(Root,a,b);
+
+}
 void tree::LCAUtil(node *root, int f, int s, queue<int>& q1, queue<int>& q2)
 {
 	static int f_f,s_f;
@@ -370,5 +424,7 @@ int main()
 	r.buildTree();
 //	r.inOrder();
 //	r.greatestNodeatEachLevel();
-	cout <<"max seq length:"<<r.maxSeqLength(); 
+//	r.modifyTree();
+	cout <<"LCA:"<<r.LcaInBst(2,6)<<endl;
+//	r.inOrder(); 
 }
