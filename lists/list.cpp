@@ -1,6 +1,6 @@
 #include "iostream"
 using namespace std;
-
+#include "cstdlib"
 class node
 {
     int data;
@@ -39,6 +39,7 @@ public:
     void printList();
     void swapEvenOdd();
     void iterativeReverse();
+    void corruptNode(int pos);
 };
 
 
@@ -54,6 +55,18 @@ list::~list()
 
 }
 
+void list::corruptNode(int pos) {
+    int i = 0;
+    node *temp = Head;
+    node *rp;
+    while(i<pos) {
+        temp = temp->getNext();
+    }
+    
+    if(temp) {
+        temp->setNext(rp);
+    }
+}
 
 void list::appendAtStart(node *newNode)
 {
@@ -153,9 +166,12 @@ int main()
 
     //list1.swapEvenOdd();
 
-    list1.iterativeReverse();
+    //list1.iterativeReverse();
+    
 
-    cout << "after swapping:";
+    list1.corruptNode(rand()%9);
+
+    cout << "after corrupting:";
 
     list1.printList();
 }
