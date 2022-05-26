@@ -1,0 +1,99 @@
+Server started http://10.217.194.174:80
+Host: 10.222.92.155
+Connection: keep-alive
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://10.222.92.155/logon/LogonPoint/tmindex.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: NSC_AAAC=ab8444d14700f7ba3a42095ba645adf2009d6428a45525d5f4f58455e445a4a42
+X-Citrix-Via: 10.222.92.155
+X-Citrix-Via-VIP: 10.222.92.155
+X-Forwarded-For: 10.160.128.45
+
+
+False
+send header
+Host: 10.222.92.155
+Connection: keep-alive
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://10.222.92.155/logon/LogonPoint/tmindex.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: NSC_AAAC=ab8444d14700f7ba3a42095ba645adf2009d6428a45525d5f4f58455e445a4a42
+X-Citrix-Via: 10.222.92.155
+X-Citrix-Via-VIP: 10.222.92.155
+X-Forwarded-For: 10.160.128.45
+Authorization: Basic dHNleHRyYW5ldFxzcmloYXJpMTpzcmloYXJpMQ==
+
+
+True
+send header
+Host: 10.222.92.155
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Referer: https://10.222.92.155/logon/LogonPoint/tmindex.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: NSC_AAAC=ab8444d14700f7ba3a42095ba645adf2009d6428a45525d5f4f58455e445a4a42
+X-Citrix-Via: 10.222.92.155
+X-Citrix-Via-VIP: 10.222.92.155
+X-Forwarded-For: 10.160.128.45
+Connection: Keep-Alive
+Authorization: Basic dHNleHRyYW5ldFxzcmloYXJpMTpzcmloYXJpMQ==
+
+
+True
+send header
+Host: 10.222.92.155
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "macOS"
+Referer: https://10.222.92.155/logon/LogonPoint/tmindex.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: NSC_AAAC=ab8444d14700f7ba3a42095ba645adf2009d6428a45525d5f4f58455e445a4a42
+X-Citrix-Via: 10.222.92.155
+X-Citrix-Via-VIP: 10.222.92.155
+X-Forwarded-For: 10.160.128.45
+Connection: Keep-Alive
+Authorization: Basic dHNleHRyYW5ldFxzcmloYXJpMTpzcmloYXJpMQ==
+
+
+True
+send header
+Server stopped.
