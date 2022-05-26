@@ -1,0 +1,9 @@
+02/23/2022
+
+1. Created 2 threads using std::thread library
+2. When I want to pass arguments as a reference, found that it is not straight forward and we must use std::ref for passing by reference to the thread function.
+3. std::ref useful another case with bind (https://thispointer.com/stdbind-tutorial-and-usage-details/)
+
+TO continue tomorrow:
+1. Move semantics in general
+2. How to pass ownership to a thread
